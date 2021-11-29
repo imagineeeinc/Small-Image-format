@@ -25,7 +25,7 @@ The Specs:
   - orientation
   - transperency
   - data
-= [Final Representation](#final-representation)
+- [Final Representation](#final-representation)
 ## RLE
 
 Run length encoding takes multiple pixels that are same together and groups them into the space of one when being stored.
