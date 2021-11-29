@@ -144,5 +144,5 @@ For the other projects on this repo like encoders, decoders, converters and view
 
 # License
 
-This project is under [Apache License 2.0](https://github.com/imagineeeinc/Tiny-Image-format/blob/main/LICENSE)
+This project is under [Apache License 2.0](https://github.com/imagineeeinc/Small-Image-format/blob/main/LICENSE)
 
