@@ -1,7 +1,7 @@
 # Small Image format
 a small image format for portable images.
 
-# Current Edtion is 0.01.0
+## Current Edtion is 0.01.0
 
 # Philosophy
 The main idea of Small Image Format(sif) is to be a highly portable image format, being small in size while having losing no data; uses a lossless compresion known as [Run Length Encoding](https://en.wikipedia.org/wiki/Run-length_encoding). It also emphasises on ease of implementation, easy to read/ edit and for eductaion (teaching how image starage and compresion works).
