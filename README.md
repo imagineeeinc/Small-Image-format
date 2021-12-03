@@ -1,7 +1,7 @@
 # Small Image format
 a small image format for portable images.
 
-## Current Edtion is 0.01.0
+## Current Edtion is 0.01.0-re
 
 # Philosophy
 The main idea of Small Image Format(sif) is to be a highly portable image format, being small in size while having losing no data; uses a lossless compresion known as [Run Length Encoding](https://en.wikipedia.org/wiki/Run-length_encoding). It also emphasises on ease of implementation, easy to read/ edit and for eductaion (teaching how image starage and compresion works).
@@ -18,14 +18,8 @@ The Specs:
   - [Rows](#rows)
   - [Representing Pixels](#representing-pixels)
 - [Meta Data](#meta-data)
-  - title
-  - description
   - width
   - height
-  - geo location
-  - copyright
-  - orientation
-  - transperency
   - edition
   - data
 - [Final Representation](#final-representation)
@@ -111,20 +105,11 @@ A row(array)->[1-ff0000ff,2-ffff00ff,3-ffffffff,1-00ffffff][Next Row...]
 There will be meta data that can travel with the image. This will be stored in a JSON Format, This does have some contraversies like implemeting will be harder in progrming languges that doesn't support JSON, but usally some one on the community has probably made a module/ package to parse JSON, JSON has been specificly choosen for its avaliblity and low learning curve.
 
 ```
-- Title [string]-optional              The name of the image
-- Desc [string]-optional               The description
 - width [integer]-required             The width of the image in pixels
 - height [integer]-required            The height of the image in pixels
-- Geo Location [array]-optional        The geo coordinates
-  - arg1: x coords
-  - arg2: y coords
-- copyright [string]-optional          The copyright information
-- orientation [string]-optional        The orientation of the image
-  - Option: (vertical | landscape)
-- transpernacy [boolen]-optional       Should it be a tranaspernt background
-                                       (if false over-rides transperncy of default pixels to 1)
 - edition [string]-optional            The image format edition
-- data [string]-optional               any extra payload/ data can be transported in this
+- data [string]-optional               any extra payload/ data can be transported in this, for apps and decoders to interpret
+                                       eg: Title, Description, Geo Location, copyright, orientation
 ```
 
 ## Final Representation
