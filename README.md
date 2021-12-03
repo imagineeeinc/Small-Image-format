@@ -1,14 +1,14 @@
 # Small Image format
 a small image format for portable images.
 
-## Current Edtion is 0.01.0
+## Current Edition is 0.01.0
 
 # Philosophy
-The main idea of Small Image Format(sif) is to be a highly portable image format, being small in size while having losing no data; uses a lossless compresion known as [Run Length Encoding](https://en.wikipedia.org/wiki/Run-length_encoding). It also emphasises on ease of implementation, easy to read/ edit and for eductaion (teaching how image starage and compresion works).
+The main idea of Small Image Format(sif) is to be a highly portable image format, being small in size while having losing no data; uses a lossless compression known as [Run Length Encoding](https://en.wikipedia.org/wiki/Run-length_encoding). It also emphasises on ease of implementation, easy to read/ edit and for eductaion (teaching how image starage and compresion works).
 
 # Things in this repo
 
-There are encoders, decoders, converters and viewers in this repo mainly wrriten in rust and js
+There are encoders, decoders, converters and viewers in this repo mainly written in rust and js. Check it out in [The Projects Section](#the-projects)
 
 # Specification
 The Specs:
@@ -25,7 +25,7 @@ The Specs:
   - geo location
   - copyright
   - orientation
-  - transperency
+  - transparency
   - edition
   - data
 - [Final Representation](#final-representation)
@@ -71,14 +71,14 @@ The Format of storing the image
 
 ### Rows
 
-THe image is tored row by row in a file, Each row is just a: 
+THe image is stored row by row in a file, Each row is just a: 
 ```
 [pixels...]
 ```
 
-A square braket with pixels inside, like an array.
+A square bracket with pixels inside, like an array.
 
-Rows are stored sequntialy by seperating a braket pair; it is infered the row after another row always comes after the one before it.
+Rows are stored sequentially by separating a bracket pair; it is inferred the row after another row always comes after the one before it.
 ```
 [pixels...][pixels...]
 ```
@@ -86,7 +86,7 @@ Also the number pixels should add up to the width of the image on each row
 
 ### Representing Pixels
 
-Each pixel is the number of pixels ther are the same after it and the colour. Represnted like this:
+Each pixel is the number of pixels there are the same after it and the colour. Represented like this:
 ```
 1-ff00ffff
 || |
@@ -102,13 +102,13 @@ Example of 5 pixels next to each other being yellow
 5-ffff00ff
 ```
 
-As these pixels will be inside a row that is an array, each pixel is seperated by a comma
+As these pixels will be inside a row that is an array, each pixel is separated by a comma
 ```
 A row(array)->[1-ff0000ff,2-ffff00ff,3-ffffffff,1-00ffffff][Next Row...]
 ```
 ## Meta Data
 
-There will be meta data that can travel with the image. This will be stored in a JSON Format, This does have some contraversies like implemeting will be harder in progrming languges that doesn't support JSON, but usally some one on the community has probably made a module/ package to parse JSON, JSON has been specificly choosen for its avaliblity and low learning curve.
+There will be meta data that can travel with the image. This will be stored in a JSON Format, This does have some controversies like implementing will be harder in programming languages that doesn't support JSON, but usually some one on the community has probably made a module/ package to parse JSON, JSON has been specifically chosen for its availability and low learning curve.
 
 ```
 - Title [string]-optional              The name of the image
@@ -129,7 +129,7 @@ There will be meta data that can travel with the image. This will be stored in a
 
 ## Final Representation
 
-The final representation will be strored in an efficent way so any image viewer can decode it without interference; here is the order:
+The final representation will be stored in an efficient way so any image viewer can decode it without interference; here is the order:
 ```
 {"...json meta data stored inside of DOUBLE inverted commas..."}
           |
@@ -141,16 +141,35 @@ The final representation will be strored in an efficent way so any image viewer 
 *the new line can be replaced with nothing making it a one line file
 ```
 
-## Edtions
+## Editions
 
-There will be editons which add minor changes, its baiscly version of the format that allow the decoder to change its stratagy for decoding. For example there is 1.2.0-rgb edition, its basicly the 1.2.0 version with rgb colour codes over hex; so, when the encoder sees this it automaticlychanges to support rgb colours.
+There will be editions which add minor changes, its basically version of the format that allow the decoder to change its strategy for decoding. For example there is 1.2.0-rgb edition, its basically the 1.2.0 version with rgb colour codes over hex; so, when the encoder sees this it automatically changes to support rgb colours.
 
 # Contributions
 
-If you feel like you want to help with the specifications by enhancing it, making it efficnet and saving some space or to correct my english please open a pull request.
+If you feel like you want to help with the specifications by enhancing it, making it efficient and saving some space or to correct my English please open a pull request.
 
 For the other projects on this repo like encoders, decoders, converters and viewers, feel free to fork and edit, and if you want open a pull request.
 
+# The Projects
+There are a few folders with implementations on the spec in languages.
+## Encoder
+As of now there is a encoder tool that converts images ([formats that are supported](https://github.com/image-rs/image#supported-image-formats)). Written in rust is a simple tool to test the specs; the plan is in the future to have a glorified single sif conversion tool that will have an encoder and decoder module inside it and a main cli tool.
+
+**Usage**
+
+```shell
+# example file
+cargo run -- --input examples/8tile.png --output examples/8tile.sif
+# your own file
+cargo run -- --input path/to/you/file.png --output path/to/output/file.sif
+
+Usage: sif-encoder [options] <input file> <output file>
+
+        Options:
+        --input,-f:   Input file name
+        --output,-o:  Output file name
+```
 # License
 
 This project is under [Apache License 2.0](https://github.com/imagineeeinc/Small-Image-format/blob/main/LICENSE)

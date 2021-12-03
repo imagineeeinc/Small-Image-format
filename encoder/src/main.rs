@@ -21,8 +21,12 @@ fn main() {
         println!("\n\tInput file: {:?}", args[0]);
         println!("\tOutput file: {:?}", args[1]);
         let data = encoder(args[0].to_string());
-        println!("\n\tImage data: {}", data);
-        save_image(args[1].to_string(), data);
+        let imgdata = &data[0];
+        let exif = &data[1];
+        //println!("\n\tImage data: {}", imgdata[..27].to_string()+"...");
+        let img = "{".to_string()+&imgdata+&"}".to_string();
+        let exifdata = &exif;
+        save_image(args[1].to_string(), exifdata.to_string()+&img);
     } else if args.len() == 1 {
         println!("\n\tNumber of arguments not satisfied.\n\tplease provide both input and output file names.");
     } else {
@@ -36,8 +40,8 @@ pub fn help() {
     println!("\t--input,-f:   Input file name");
     println!("\t--output,-o:  Output file name");
 }
-
-pub fn encoder(input: String) -> String {
+pub fn gen_exif(opts: Vec<i32>) -> String {return format!("{{\"width\": {},\"height\": {}}}", opts[0], opts[1]);}
+pub fn encoder(input: String) -> Vec<String> {
     let imgpath = Path::new(&input[..]);
     print!("\tReading image file: {}\n", imgpath.to_str().unwrap());
     let img = image::open(imgpath).unwrap();
@@ -79,7 +83,14 @@ pub fn encoder(input: String) -> String {
         col = 0;
         img_data = img_data.to_string()+&this_row.to_string()+&"]".to_string();
     }
-    return img_data;
+    let mut meta: Vec<i32> = Vec::new();
+    meta.push(width as i32);
+    meta.push(height as i32);
+    let exif = gen_exif(meta);
+    let mut data: Vec<String> = Vec::new();
+    data.push(img_data);
+    data.push(exif);
+    return data;
 }
 /*
 fn duplicate<T>(x: T) -> T { x }
