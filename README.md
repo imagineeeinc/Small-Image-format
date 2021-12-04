@@ -116,7 +116,7 @@ There will be meta data that can travel with the image. This will be stored in a
 
 The final representation will be stored in an efficient way so any image viewer can decode it without interference; here is the order:
 ```
-{"...json meta data stored inside of DOUBLE inverted commas..."}
+{...json meta data...}
           |
           |_the meta data are stored in curlly braces
 {[...pixels...][...pixels...][...pixels...]...}
