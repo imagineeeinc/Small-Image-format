@@ -60,7 +60,7 @@ pub fn encoder(input: String) -> Vec<String> {
             let blue = pixel[2] as f32;
             let alpha = pixel[3] as f32;
             let colo = Rgb::from((red, green, blue, alpha/255.0)).to_hex_string()[1..].to_string();
-            //copy thr colo variable to the colou vaiable
+            //copy the colo variable to the colou vaiable
             let colou = colo;
             let mut pixel_data: String = String::new();
             if curc == "" {

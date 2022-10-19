@@ -132,4 +132,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-*.sif
+decoder/examples/8tile.png
+encoder/examples/8tile.sif
