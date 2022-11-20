@@ -155,6 +155,11 @@ Usage: sif-encoder [options] <input file> <output file>
         --input,-f:   Input file name
         --output,-o:  Output file name
 ```
+## Decoder
+*Still in works*
+
+## Nim Encoder & Decoder
+*Not started*
 # License
 
 This project is under [Apache License 2.0](https://github.com/imagineeeinc/Small-Image-format/blob/main/LICENSE)
